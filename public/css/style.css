@@ -1,0 +1,13 @@
+body {
+    background-color: #fff3b2;
+ }
+ 
+ nav{
+    border: 2px solid black;
+   padding-left: 10px;
+ }
+ section{
+    display: flex;
+   justify-content:center;
+   align-items: flex-end;
+ }
