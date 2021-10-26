@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Random Parrot Generator</title>
+        <link rel='stylesheet' href='style.css'>
+    </head>
+    <body>
+        <nav>
+            <h1>Random Parrot Generator</h1>
+        </nav>
+        <section class='parrots'>
+            <% for(let i=0; i < info.length; i++) {%>
+                <img src="<%= info[i].parrotImage %>" />
+                <h2><%= info[i].parrotName %></h2>
+                <li>
+                    <span><%= info[i].parrotColor %></span>
+                    <span><%= info[i].naturalHabitat %></span>
+                    <span><%= info[i].definingCharacteristic %></span>
+                </li>
+            <% } %>
+            <button id='button'>Click here for a random parrot</button>
+        </section>
+        <!-- <section>
+            <form action="/addParrot" method="POST" enctype='multipart/form-data'>
+                <input type='file' placeholder="Upload image of parrot" name='parrotImage'>
+                <input type='text' placeholder="Name of parrot" name='parrotName'>
+                <input type='text' placeholder="Color of parrot" name='parrotColor'>
+                <input type='text' placeholder="Parrot's natural habitat" name='naturalHabitat'>
+                <input type='text' placeholder="Parrot's defining characteristic" name='definingCharacteristic'>
+                <input type='submit' placeholder="Enter in parrot">
+            </form>
+        </section> -->
+        
+        <script src='js/main.js'></script>
+
+    </body>
+</html>
+
+
+<!-- 'colors' : 'white and gray, yellow, white, and gray, white',
+    'natural habitat' : 'Australia',
+    'defining characteristics' : 'crest on top of head, orange circles on cheeks', -->

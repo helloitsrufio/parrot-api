@@ -1,8 +1,11 @@
-const clickButton = document.getElementById('button')
+const getParrotButton = document.getElementById('button')
+const addParrotButton = document.getElementById('inputParrot')
 
 Array.from(loadText).forEach((element) =>{
     element.addEventListener('click', getParrot)
 })
+
+addParrotButton.addEventListener('click', addParrot)
 
 async function getParrot() {
     const parrotImageQ = this.parentNode.childNodes[0].innerText
@@ -30,4 +33,8 @@ async function getParrot() {
     }catch(err){
         console.log(err)
     }
+}
+
+async function addParrot() {
+
 }
