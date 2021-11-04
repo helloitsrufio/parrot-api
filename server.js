@@ -4,6 +4,7 @@ const MongoClient = require('mongodb').MongoClient
 require('dotenv').config()
 // const cors = require('cors')
 const multer = require('multer')
+const fileUpload = require('express-fileupload');
 const cloudinary = require('cloudinary')
 
 let db,
@@ -19,6 +20,7 @@ app.set('view engine', 'ejs')
 app.use(express.static('public'))//lets you use files in your public folder
 app.use(express.urlencoded({ extended : true}))//method inbuilt in express to recognize the incoming Request Object as strings or arrays. 
 app.use(express.json())//method inbuilt in express to recognize the incoming Request Object as a JSON Object.
+app.use(fileUpload())
 
 app.get('/', (request, response) => {
     db.collection('Parrot').find().toArray()
@@ -66,19 +68,22 @@ app.post('/addParrot', async (req,res) =>{
     })
     const { path } = req.file; 
     console.log('Here is req.file', req.file)//file becomes available in req at this point
+    if(!req.file){
+        return res.send('Please upload a file.')
+    }
 
-    const fName = req.file.originalname.split('.')[0]
+    const fName = req.file.originalname.split('.')[0]//ex of destructuring
     cloudinary.uploader.upload(
         path,
         {
             resource_type: 'image',
             public_id: `ImageUploads/${fName}`,
             eager: [ //unlike a lazy transformation, which generates stored images on demand, an eager transformation is transformed during asset upload process.
-                {
-                  width: 300,
-                  height: 300,
-                //   crop: "pad",
-                },
+                // {
+                //   width: 300,
+                //   height: 300,
+                // //   crop: "pad",
+                // },
                 {
                   width: 160,
                   height: 100,
@@ -89,7 +94,7 @@ app.post('/addParrot', async (req,res) =>{
         },
 
         //Send cloudinary res or catch error
-        (err, video) => {
+        (err, image) => {
             if (err) return res.send(err)
             fs.unlinkSync(path)
             return res.send(image)
