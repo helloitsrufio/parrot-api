@@ -102,25 +102,24 @@ app.post('/addParrot', async (req,res) =>{
     )
 
 
-    createPost: async (req, res) => {
-        try {
-          // Upload image to cloudinary
-          const result = await cloudinary.uploader.upload(req.file.path);
+    // createPost: async (req, res) => {
+    //     try {
+    //       // Upload image to cloudinary
+    //       const result = await cloudinary.uploader.upload(req.file.path);
     
-          await Post.create({
-            title: req.body.title,
-            image: result.secure_url,
-            cloudinaryId: result.public_id,
-            caption: req.body.caption,
-            likes: 0,
-            user: req.user.id,
-          });
-          console.log("Post has been added!");
-          res.redirect("/profile");
-        } catch (err) {
-          console.log(err);
-        }
-      }
+    //       await Post.create({
+    //         title: req.body.title,
+    //         image: result.secure_url,
+    //         cloudinaryId: result.public_id,
+    //         caption: req.body.caption,
+    //         user: req.user.id,
+    //       });
+    //       console.log("Post has been added!");
+    //       res.redirect("/profile");
+    //     } catch (err) {
+    //       console.log(err);
+    //     }
+    //   }
 
 
     db.collection('parrots').insertOne({parrotImage: req.file.parrotImage, parrotName: req.body.parrotName, parrotColor: req.body.parrotColor, naturalHabitat: req.body.naturalHabitat, definingCharacteristic: req.body.definingCharacteristic})

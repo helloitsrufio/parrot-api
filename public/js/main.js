@@ -1,5 +1,6 @@
 const getParrotButton = document.getElementById('button')
 const addParrotButton = document.getElementById('inputParrot')
+const file = document.getElementById('file')
 
 Array.from(loadText).forEach((element) =>{
     element.addEventListener('click', getParrot)
@@ -35,6 +36,7 @@ async function getParrot() {
     }
 }
 
+//On click, run this function
 async function addParrot() {
-
+    //Adds document to db
 }
